@@ -8,6 +8,8 @@ import java.io.IOException;
 import io.javalin.plugin.openapi.annotations.*;
 import net.hydrogen2oxygen.organisation.exceptions.ErrorResponse;
 
+import static net.hydrogen2oxygen.organisation.services.Database.instance;
+
 public class OrganisationController {
 
     @OpenApi(
@@ -22,10 +24,11 @@ public class OrganisationController {
                     @OpenApiResponse(status = "400", content = {@OpenApiContent(from = ErrorResponse.class)})
             }
     )
-    public static Organisation saveOrUpdateOrganisation(Context ctx) throws IOException {
+    public static void saveOrUpdateOrganisation(Context ctx) throws IOException {
         ctx.status(200);
-        Organisation organisation = ctx.bodyStreamAsClass(Organisation.class);
-        return Database.instance().saveOrganisation(organisation);
+        Organisation org = ctx.bodyStreamAsClass(Organisation.class);
+        org = Database.instance().saveOrganisation(org);
+        ctx.json(org);
     }
 
     @OpenApi(
@@ -41,7 +44,7 @@ public class OrganisationController {
     )
     public static void loadOrganisation(Context ctx) throws IOException {
         try {
-            Organisation org = Database.instance().loadOrganisation();
+            Organisation org = instance().loadOrganisation();
             ctx.json(org);
         } catch (IOException e) {
             ctx.json(new Organisation());

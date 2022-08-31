@@ -44,8 +44,9 @@ export class AppComponent {
 
   private getLinks():Link[] {
     return [
-      new Link("Dashboard", true),
-      new Link("Organisation")
+      new Link("Organisation", true),
+      new Link("Map"),
+      new Link("Diagram")
     ]
   }
 }

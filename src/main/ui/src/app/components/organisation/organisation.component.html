@@ -1,14 +1,27 @@
 <div class="container-fluid">
-  <form [formGroup]="groupForm">
+  <form [formGroup]="groupForm" *ngIf="!editGroupFlag">
     <div class="mb-3">
       <label for="groupName" class="form-label">Group Name</label>
       <input type="text" class="form-control form-control-sm"
              id="groupName" formControlName="name"
              placeholder="group name">
     </div>
-    <button class="btn btn-success" (click)="addNewGroup()">ADD NEW GROUP</button>
+    <button class="btn btn-success btn-sm" (click)="addNewGroup()">ADD NEW GROUP</button>
   </form>
-  <div *ngFor="let group of org.groups">
-    {{group.name}} ---
+  <div *ngFor="let group of org.groups" class="group">
+    <h4 *ngIf="!group.editMode">{{group.name}}</h4>
+    <form [formGroup]="groupForm" *ngIf="group.editMode">
+      <div class="mb-3">
+        <label for="groupName" class="form-label">Group Name</label>
+        <input type="text" class="form-control form-control-sm"
+               id="groupName" formControlName="name"
+               placeholder="group name">
+      </div>
+      <button class="btn btn-primary btn-sm" (click)="updateGroup(group)">UPDATE GROUP</button>
+    </form>
+    <div class="topRightButtons">
+      <button class="btn btn-sm btn-primary rounderButton" (click)="editGroup(group)">EDIT</button>
+      <button class="btn btn-sm btn-danger rounderButton" (click)="removeGroup(group)">DEL</button>
+    </div>
   </div>
 </div>

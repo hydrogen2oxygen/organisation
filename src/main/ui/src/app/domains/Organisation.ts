@@ -8,6 +8,7 @@ export class Group {
   persons:Person[] = [];
   locations:Location[] = [];
   tags:string[] = [];
+  editMode:boolean = false;
 }
 
 export class Person {

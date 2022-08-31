@@ -8,11 +8,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
+import { OrganisationComponent } from './components/organisation/organisation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    OrganisationComponent
   ],
   imports: [
     BrowserModule,

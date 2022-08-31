@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <form [formGroup]="groupForm">
+    <div class="mb-3">
+      <label for="groupName" class="form-label">Group Name</label>
+      <input type="text" class="form-control form-control-sm"
+             id="groupName" formControlName="name"
+             placeholder="group name">
+    </div>
+    <button class="btn btn-success" (click)="addNewGroup()">ADD NEW GROUP</button>
+  </form>
+  <div *ngFor="let group of org.groups">
+    {{group.name}} ---
+  </div>
+</div>

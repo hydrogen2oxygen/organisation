@@ -1,7 +1,5 @@
 package net.hydrogen2oxygen.organisation.domain;
 
-import org.apache.commons.math3.analysis.function.Add;
-
 import java.util.ArrayList;
 import java.util.List;
 

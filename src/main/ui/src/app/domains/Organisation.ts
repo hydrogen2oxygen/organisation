@@ -1,4 +1,5 @@
 export class Organisation {
+  name:string = '';
   groups:Group[] = [];
   locations:Location[] = [];
 }
@@ -8,7 +9,6 @@ export class Group {
   persons:Person[] = [];
   locations:Location[] = [];
   tags:string[] = [];
-  editMode:boolean = false;
 }
 
 export class Person {

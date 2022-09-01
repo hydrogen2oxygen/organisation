@@ -8,8 +8,17 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Organisation {
 
+    private String name;
     private List<Group> groups = new ArrayList<>();
     private List<Location> locations = new ArrayList<>();
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<Group> getGroups() {
         return groups;

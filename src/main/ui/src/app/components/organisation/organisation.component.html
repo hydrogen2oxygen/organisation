@@ -1,27 +1,95 @@
 <div class="container-fluid">
-  <form [formGroup]="groupForm" *ngIf="!editGroupFlag">
-    <div class="mb-3">
-      <label for="groupName" class="form-label">Group Name</label>
-      <input type="text" class="form-control form-control-sm"
-             id="groupName" formControlName="name"
-             placeholder="group name">
+
+  <form [formGroup]="groupForm" style="margin-top: 1rem;">
+    <div class="input-group mb-3" style="width:50%; margin: auto;">
+      <input formControlName="mainOrganisationName" type="text" class="form-control" placeholder="Organisation name" aria-label="Organisation name" aria-describedby="orgName">
+      <button class="btn btn-primary" type="button" id="orgName" (click)="saveOrgName()">Save Organisation Name</button>
     </div>
-    <button class="btn btn-success btn-sm" (click)="addNewGroup()">ADD NEW GROUP</button>
   </form>
+
   <div *ngFor="let group of org.groups" class="group">
-    <h4 *ngIf="!group.editMode">{{group.name}}</h4>
-    <form [formGroup]="groupForm" *ngIf="group.editMode">
-      <div class="mb-3">
-        <label for="groupName" class="form-label">Group Name</label>
-        <input type="text" class="form-control form-control-sm"
-               id="groupName" formControlName="name"
-               placeholder="group name">
-      </div>
-      <button class="btn btn-primary btn-sm" (click)="updateGroup(group)">UPDATE GROUP</button>
-    </form>
+    <h4>{{group.name}}</h4>
+    <button class="btn btn-sm btn-primary rounderButton" *ngFor="let p of group.persons">{{p.name}}</button>
     <div class="topRightButtons">
-      <button class="btn btn-sm btn-primary rounderButton" (click)="editGroup(group)">EDIT</button>
+      <button class="btn btn-sm btn-primary rounderButton" (click)="addNewPerson(group)" data-bs-toggle="modal" data-bs-target="#editPerson">ADD PERSON</button>
+      <button class="btn btn-sm btn-primary rounderButton" (click)="editGroup(group)" data-bs-toggle="modal"
+              data-bs-target="#editGroup">EDIT
+      </button>
       <button class="btn btn-sm btn-danger rounderButton" (click)="removeGroup(group)">DEL</button>
+    </div>
+  </div>
+
+  <hr>
+  <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editGroup" (click)="clearEditMode()">
+    ADD NEW GROUP
+  </button>
+</div>
+
+<!-- Modal Dialogs -->
+<div class="modal fade" id="editGroup" tabindex="-1" aria-labelledby="labelGroupTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelGroupTitle">Edit group</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="groupForm">
+          <div class="mb-3">
+            <label for="groupName" class="form-label">Group Name</label>
+            <input type="text" class="form-control form-control-sm"
+                   id="groupName" formControlName="name"
+                   placeholder="group name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button *ngIf="!group" type="button" class="btn btn-primary" (click)="addNewGroup()" data-bs-toggle="modal"
+                data-bs-target="#editGroup">Save New Group
+        </button>
+        <button *ngIf="group" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editGroup"
+                (click)="saveGroup(group)">Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editPerson" tabindex="-1" aria-labelledby="labelPersonTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelPersonTitle">Edit person</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="groupForm">
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control form-control-sm"
+                       id="newPersonName" formControlName="newPersonName"
+                       placeholder="new person name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control form-control-sm"
+                       id="street" formControlName="street"
+                       placeholder="street">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control form-control-sm"
+                       id="houseNumber" formControlName="houseNumber"
+                       placeholder="houseNumber">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addPersonToGroup()" data-bs-dismiss="modal">Save New Person</button>
+      </div>
     </div>
   </div>
 </div>

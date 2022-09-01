@@ -48,7 +48,6 @@ public class Adapter {
 
     private void initDatabaseAdapter() {
         // CRUD, CREATE (or UPDATE), READ, UPDATE, DELETE (does not exist yet in this case)
-        // ConnectionInfo
         app.post(ORGANISATION, OrganisationController::saveOrUpdateOrganisation);
         app.get(ORGANISATION, OrganisationController::loadOrganisation);
     }

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import { Network } from "vis-network/peer/esm/vis-network";
 import { DataSet } from "vis-data/peer/esm/vis-data"
 import {EdgeVis, NodeVis} from "../../domains/NetworkingDomains";
+import {OrganisationService} from "../../service/organisation.service";
+import {Organisation} from "../../domains/Organisation";
 
 @Component({
   selector: 'app-diagram',
@@ -10,25 +12,45 @@ import {EdgeVis, NodeVis} from "../../domains/NetworkingDomains";
 })
 export class DiagramComponent implements OnInit {
 
-  constructor() {}
+  org: Organisation = new Organisation();
+  network:any;
+
+  constructor(private organisationService: OrganisationService) {}
 
   ngOnInit(): void {
-    let nodes = new DataSet<NodeVis>([
-      { id: 1, label: "Node 1" },
-      { id: 2, label: "Node 2" },
-      { id: 3, label: "Node 3" },
-      { id: 4, label: "Node 4" },
-      { id: 5, label: "Node 5" },
-    ]);
+    this.organisationService.loadOrganisation().subscribe(o => {
+      this.org = o;
+      this.initVisNetwork();
+    });
 
-    let edges: DataSet<EdgeVis> = new DataSet([
-      { id: 1, from: 1, to: 3 },
-      { id: 2, from: 1, to: 2 },
-      { id: 3, from: 2, to: 4 },
-      { id: 4, from: 2, to: 5 }
-    ]);
+  }
 
-    // create a network
+  /**
+   * See https://visjs.github.io/vis-network/examples/
+   */
+  private initVisNetwork() {
+    let nodeArray:NodeVis[] = [];
+    let edgeArray:EdgeVis[] = [];
+    let idCount = 1;
+
+    nodeArray.push({ id: idCount, label: this.org.name, shape: "circle", color: "#2c86ff" });
+
+    this.org.groups.forEach( g => {
+      idCount++;
+      nodeArray.push({ id: idCount, label: g.name, shape: "circle", color: "#71aeff" });
+      edgeArray.push({ id: idCount, from: 1, to: idCount });
+
+      let groupId = idCount;
+
+      g.persons.forEach( p => {
+        idCount++;
+        nodeArray.push({ id: idCount, label: p.name, shape: "box", color: "#6bff2c" });
+        edgeArray.push({ id: idCount, from: groupId, to: idCount });
+      })
+    });
+
+    let nodes = new DataSet<NodeVis>(nodeArray);
+    let edges: DataSet<EdgeVis> = new DataSet(edgeArray);
     let container = document.getElementById("mynetwork");
     let data = {
       nodes: nodes,
@@ -36,8 +58,13 @@ export class DiagramComponent implements OnInit {
     };
     let options = {};
     if (container) {
-      let network = new Network(container, data, options);
+      this.network = new Network(container, data, options);
+      this.network.on("click", (e: any) => {
+        let nodeId:any = this.network.getNodeAt(e.pointer.DOM);
+        if (nodeId) {
+          console.log(nodes.get(nodeId))
+        }
+      })
     }
   }
-
 }

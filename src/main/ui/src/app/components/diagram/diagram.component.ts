@@ -44,7 +44,7 @@ export class DiagramComponent implements OnInit {
 
       g.persons.forEach( p => {
         idCount++;
-        nodeArray.push({ id: idCount, label: p.name, shape: "box", color: "#6bff2c" });
+        nodeArray.push({ id: idCount, label: p.lastName + " " + p.firstName, shape: "box", color: "#6bff2c" });
         edgeArray.push({ id: idCount, from: groupId, to: idCount });
       })
     });

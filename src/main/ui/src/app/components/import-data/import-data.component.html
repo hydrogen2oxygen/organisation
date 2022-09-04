@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="mb-3">
+    <label for="formFile" class="form-label">Choose an Excel or similar file for the import of data</label>
+    <input type="file" (change)="importFile($event)" class="form-control" placeholder="Upload file"
+           accept=".xlsx,.csv" id="formFile">
+  </div>
+
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th *ngFor="let h of importHeaderInfo.headerNames">{{h}}</th>
+      </tr>
+      </thead>
+      <tr>
+        <td *ngFor="let h of importHeaderInfo.headerNames">
+          <select (change)="setHeaderFor($event, h)">
+            <option selected>-</option>
+            <option>FirstName</option>
+            <option>LastName</option>
+            <option>Street</option>
+            <option>HouseNumber</option>
+            <option>PostalCode</option>
+            <option>City</option>
+            <option>PhoneNumber</option>
+            <option>CellPhone</option>
+            <option>Email</option>
+            <option>ContactPerson</option>
+            <option>Birthday</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <button *ngIf="importHeaderInfo.headerNames.length > 0" (click)="importData()" class="btn btn-success" style="margin-top: 1rem">Start Import Data</button>
+
+</div>

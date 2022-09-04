@@ -9,13 +9,15 @@ import io.javalin.plugin.openapi.ui.SwaggerOptions;
 import io.swagger.v3.oas.models.info.Info;
 import net.hydrogen2oxygen.organisation.domain.Organisation;
 import net.hydrogen2oxygen.organisation.exceptions.ErrorResponse;
-import net.hydrogen2oxygen.organisation.services.OrganisationController;
+import net.hydrogen2oxygen.organisation.controller.OrganisationController;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class Adapter {
 
     private static final String ORGANISATION = "/organisation";
+    private static final String ORGANISATION_IMPORT_HEADER = "/organisation-import-header";
+    private static final String ORGANISATION_IMPORT_DATA = "/organisation-import-data";
     private final Log log = LogFactory.getLog(Adapter.class);
 
     private Javalin app;
@@ -50,6 +52,8 @@ public class Adapter {
         // CRUD, CREATE (or UPDATE), READ, UPDATE, DELETE (does not exist yet in this case)
         app.post(ORGANISATION, OrganisationController::saveOrUpdateOrganisation);
         app.get(ORGANISATION, OrganisationController::loadOrganisation);
+        app.post(ORGANISATION_IMPORT_HEADER, OrganisationController::importOrganisationHeader);
+        app.post(ORGANISATION_IMPORT_DATA, OrganisationController::importOrganisationData);
     }
 
     private static OpenApiPlugin getConfiguredOpenApiPlugin() {
@@ -57,7 +61,7 @@ public class Adapter {
         OpenApiOptions options = new OpenApiOptions(info)
                 .activateAnnotationScanningFor("net.hydrogen2oxygen.organisation")
                 .path("/swagger-docs") // endpoint for OpenAPI json
-                .swagger(new SwaggerOptions("/swagger-ui")) // endpoint for swagger-ui
+                .swagger(new SwaggerOptions("/swagger")) // endpoint for swagger-ui
                 .reDoc(new ReDocOptions("/redoc")) // endpoint for redoc
                 .defaultDocumentation(doc -> {
                     doc.json("200", Organisation.class);

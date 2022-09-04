@@ -6,19 +6,30 @@ import java.util.List;
 
 public class Person implements ITags {
 
-    private String name;
+    private String lastName;
+    private String firstName;
     private ContactData contactData;
     private Address address;
     private Calendar birthDate;
     private Integer age;
+    private boolean groupLead = false;
+    private boolean groupLeadAssistant = false;
     private List<String> tags = new ArrayList<>();
 
-    public String getName() {
-        return name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public ContactData getContactData() {
@@ -59,5 +70,21 @@ public class Person implements ITags {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
+    }
+
+    public boolean isGroupLead() {
+        return groupLead;
+    }
+
+    public void setGroupLead(boolean groupLead) {
+        this.groupLead = groupLead;
+    }
+
+    public boolean isGroupLeadAssistant() {
+        return groupLeadAssistant;
+    }
+
+    public void setGroupLeadAssistant(boolean groupLeadAssistant) {
+        this.groupLeadAssistant = groupLeadAssistant;
     }
 }

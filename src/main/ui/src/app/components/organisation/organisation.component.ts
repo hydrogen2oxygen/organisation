@@ -80,7 +80,8 @@ export class OrganisationComponent implements OnInit {
     return this.formBuilder.group({
       mainOrganisationName: this.org.name,
       name: '',
-      newPersonName: '',
+      lastName: '',
+      firstName: '',
       street: '',
       houseNumber: '',
       postalCode: '',
@@ -92,7 +93,8 @@ export class OrganisationComponent implements OnInit {
   addPersonToGroup() {
     if (this.group) {
       let newPerson = new Person();
-      newPerson.name = this.groupForm.get("newPersonName")?.value;
+      newPerson.lastName = this.groupForm.get("lastName")?.value;
+      newPerson.firstName = this.groupForm.get("firstName")?.value;
       newPerson.address.street = this.groupForm.get("street")?.value;
       newPerson.address.houseNumber = this.groupForm.get("houseNumber")?.value;
       this.group.persons.push(newPerson);

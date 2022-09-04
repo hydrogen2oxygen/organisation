@@ -11,6 +11,7 @@ public class Organisation {
     private String name;
     private List<Group> groups = new ArrayList<>();
     private List<Location> locations = new ArrayList<>();
+    private List<Person> personList = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -34,5 +35,13 @@ public class Organisation {
 
     public void setLocations(List<Location> locations) {
         this.locations = locations;
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
     }
 }

@@ -46,7 +46,8 @@ export class AppComponent {
     return [
       new Link("Organisation", true),
       new Link("Map"),
-      new Link("Diagram")
+      new Link("Diagram"),
+      new Link("Import Data")
     ]
   }
 }

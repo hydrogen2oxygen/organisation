@@ -37,6 +37,10 @@ public class Database {
     }
 
     public Organisation loadOrganisation() throws IOException {
+        File orgFile = new File(ORGANISATION_JSON);
+        if (!orgFile.exists()) {
+            return new Organisation();
+        }
         return mapper.readValue(new File(ORGANISATION_JSON), Organisation.class);
     }
 }

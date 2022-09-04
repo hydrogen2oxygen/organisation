@@ -10,13 +10,15 @@ import {ToastrModule} from "ngx-toastr";
 import { OrganisationComponent } from './components/organisation/organisation.component';
 import { MapComponent } from './components/map/map.component';
 import { DiagramComponent } from './components/diagram/diagram.component';
+import { ImportDataComponent } from './components/import-data/import-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OrganisationComponent,
     MapComponent,
-    DiagramComponent
+    DiagramComponent,
+    ImportDataComponent
   ],
   imports: [
     BrowserModule,

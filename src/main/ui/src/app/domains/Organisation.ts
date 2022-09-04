@@ -2,6 +2,7 @@ export class Organisation {
   name:string = '';
   groups:Group[] = [];
   locations:Location[] = [];
+  personList:Person[] = [];
 }
 
 export class Group {
@@ -12,12 +13,15 @@ export class Group {
 }
 
 export class Person {
-  name:string = '';
+  lastName:string = '';
+  firstName:string = '';
   contactData:ContactData = new ContactData();
   address:Address = new Address();
   birthDate:Date|undefined;
   age:number|undefined;
   tags:string[] = [];
+  groupLead:boolean = false;
+  groupLeadAssistant:boolean = false;
 }
 
 export class ContactData {

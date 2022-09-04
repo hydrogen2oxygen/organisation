@@ -9,7 +9,7 @@
 
   <div *ngFor="let group of org.groups" class="group">
     <h4>{{group.name}}</h4>
-    <button class="btn btn-sm btn-primary rounderButton" *ngFor="let p of group.persons">{{p.name}}</button>
+    <button class="btn btn-sm btn-primary rounderButton" *ngFor="let p of group.persons">{{p.lastName}} {{p.firstName}}</button>
     <div class="topRightButtons">
       <button class="btn btn-sm btn-primary rounderButton" (click)="addNewPerson(group)" data-bs-toggle="modal" data-bs-target="#editPerson">ADD PERSON</button>
       <button class="btn btn-sm btn-primary rounderButton" (click)="editGroup(group)" data-bs-toggle="modal"
@@ -69,8 +69,13 @@
             <div class="row">
               <div class="col">
                 <input type="text" class="form-control form-control-sm"
-                       id="newPersonName" formControlName="newPersonName"
-                       placeholder="new person name">
+                       id="LastName" formControlName="lastName"
+                       placeholder="LastName">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control form-control-sm"
+                       id="FirstName" formControlName="firstName"
+                       placeholder="FirstName">
               </div>
               <div class="col">
                 <input type="text" class="form-control form-control-sm"

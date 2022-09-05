@@ -34,4 +34,8 @@ export class ImportService {
     console.log(map)
     return this.http.post<void>(`${ImportService.baseUrl}-data`, map);
   }
+
+  importGeoLocations(): Observable<void> {
+    return this.http.post<void>(`${ImportService.baseUrl}-geo-locations`,null);
+  }
 }

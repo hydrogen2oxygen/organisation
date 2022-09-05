@@ -86,7 +86,9 @@ export class OrganisationComponent implements OnInit {
       houseNumber: '',
       postalCode: '',
       city: '',
-      cellPhone: ''
+      cellPhone: '',
+      phoneNumber: '',
+      email: ''
     });
   }
 
@@ -97,6 +99,11 @@ export class OrganisationComponent implements OnInit {
       newPerson.firstName = this.groupForm.get("firstName")?.value;
       newPerson.address.street = this.groupForm.get("street")?.value;
       newPerson.address.houseNumber = this.groupForm.get("houseNumber")?.value;
+      newPerson.address.postalCode = this.groupForm.get("postalCode")?.value;
+      newPerson.address.city = this.groupForm.get("city")?.value;
+      newPerson.contactData.cellPhone = this.groupForm.get("cellPhone")?.value;
+      newPerson.contactData.phoneNumber = this.groupForm.get("phoneNumber")?.value;
+      newPerson.contactData.email = this.groupForm.get("email")?.value;
       this.group.persons.push(newPerson);
       this.saveOrg();
     }

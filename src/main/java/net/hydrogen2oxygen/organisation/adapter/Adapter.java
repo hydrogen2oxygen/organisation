@@ -18,6 +18,7 @@ public class Adapter {
     private static final String ORGANISATION = "/organisation";
     private static final String ORGANISATION_IMPORT_HEADER = "/organisation-import-header";
     private static final String ORGANISATION_IMPORT_DATA = "/organisation-import-data";
+    private static final String ORGANISATION_IMPORT_GEO_LOCATIONS = "/organisation-import-geo-locations";
     private final Log log = LogFactory.getLog(Adapter.class);
 
     private Javalin app;
@@ -54,6 +55,7 @@ public class Adapter {
         app.get(ORGANISATION, OrganisationController::loadOrganisation);
         app.post(ORGANISATION_IMPORT_HEADER, OrganisationController::importOrganisationHeader);
         app.post(ORGANISATION_IMPORT_DATA, OrganisationController::importOrganisationData);
+        app.post(ORGANISATION_IMPORT_GEO_LOCATIONS, OrganisationController::importGeoLocations);
     }
 
     private static OpenApiPlugin getConfiguredOpenApiPlugin() {

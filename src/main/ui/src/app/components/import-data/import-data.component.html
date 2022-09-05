@@ -32,6 +32,7 @@
       </tr>
     </table>
   </div>
-  <button *ngIf="importHeaderInfo.headerNames.length > 0" (click)="importData()" class="btn btn-success" style="margin-top: 1rem">Start Import Data</button>
+  <button *ngIf="importHeaderInfo.headerNames.length > 0" (click)="importData()" class="btn btn-success" style="margin-right: 1rem; margin-top: 1rem">Start Import Data</button>
+  <button (click)="importGeoLocations()" class="btn btn-primary" style="margin-top: 1rem">Import GeoLocations</button>
 
 </div>

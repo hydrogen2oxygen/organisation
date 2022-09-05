@@ -33,18 +33,18 @@ export class DiagramComponent implements OnInit {
     let edgeArray:EdgeVis[] = [];
     let idCount = 1;
 
-    nodeArray.push({ id: idCount, label: this.org.name, shape: "circle", color: "#2c86ff" });
+    nodeArray.push({ id: idCount, label: this.org.name, shape: "circle", color: "#42f09f" });
 
     this.org.groups.forEach( g => {
       idCount++;
-      nodeArray.push({ id: idCount, label: g.name, shape: "circle", color: "#71aeff" });
+      nodeArray.push({ id: idCount, label: g.name, shape: "circle", color: "#c0b4ff" });
       edgeArray.push({ id: idCount, from: 1, to: idCount });
 
       let groupId = idCount;
 
       g.persons.forEach( p => {
         idCount++;
-        nodeArray.push({ id: idCount, label: p.lastName + " " + p.firstName, shape: "box", color: "#6bff2c" });
+        nodeArray.push({ id: idCount, label: p.lastName + " " + p.firstName, shape: "box", color: "#2cff48" });
         edgeArray.push({ id: idCount, from: groupId, to: idCount });
       })
     });

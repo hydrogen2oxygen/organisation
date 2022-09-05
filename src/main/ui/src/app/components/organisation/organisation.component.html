@@ -2,16 +2,20 @@
 
   <form [formGroup]="groupForm" style="margin-top: 1rem;">
     <div class="input-group mb-3" style="width:50%; margin: auto;">
-      <input formControlName="mainOrganisationName" type="text" class="form-control" placeholder="Organisation name" aria-label="Organisation name" aria-describedby="orgName">
+      <input formControlName="mainOrganisationName" type="text" class="form-control" placeholder="Organisation name"
+             aria-label="Organisation name" aria-describedby="orgName">
       <button class="btn btn-primary" type="button" id="orgName" (click)="saveOrgName()">Save Organisation Name</button>
     </div>
   </form>
 
   <div *ngFor="let group of org.groups" class="group">
     <h4>{{group.name}}</h4>
-    <button class="btn btn-sm btn-primary rounderButton" *ngFor="let p of group.persons">{{p.lastName}} {{p.firstName}}</button>
+    <button class="btn btn-sm btn-primary rounderButton"
+            *ngFor="let p of group.persons">{{p.lastName}} {{p.firstName}}</button>
     <div class="topRightButtons">
-      <button class="btn btn-sm btn-primary rounderButton" (click)="addNewPerson(group)" data-bs-toggle="modal" data-bs-target="#editPerson">ADD PERSON</button>
+      <button class="btn btn-sm btn-primary rounderButton" (click)="addNewPerson(group)" data-bs-toggle="modal"
+              data-bs-target="#editPerson">ADD PERSON
+      </button>
       <button class="btn btn-sm btn-primary rounderButton" (click)="editGroup(group)" data-bs-toggle="modal"
               data-bs-target="#editGroup">EDIT
       </button>
@@ -77,6 +81,8 @@
                        id="FirstName" formControlName="firstName"
                        placeholder="FirstName">
               </div>
+            </div>
+            <div class="row" style="margin-top: 0.5rem">
               <div class="col">
                 <input type="text" class="form-control form-control-sm"
                        id="street" formControlName="street"
@@ -88,12 +94,45 @@
                        placeholder="houseNumber">
               </div>
             </div>
+            <div class="row" style="margin-top: 0.5rem">
+              <div class="col">
+                <input type="text" class="form-control form-control-sm"
+                       id="postalCode" formControlName="postalCode"
+                       placeholder="PostalCode">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control form-control-sm"
+                       id="city" formControlName="city"
+                       placeholder="City">
+              </div>
+            </div>
+            <div class="row" style="margin-top: 0.5rem">
+              <div class="col">
+                <input type="text" class="form-control form-control-sm"
+                       id="cellPhone" formControlName="cellPhone"
+                       placeholder="CellPhone">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control form-control-sm"
+                       id="phoneNumber" formControlName="phoneNumber"
+                       placeholder="PhoneNumber">
+              </div>
+            </div>
+            <div class="row" style="margin-top: 0.5rem">
+              <div class="col">
+                <input type="text" class="form-control form-control-sm"
+                       id="email" formControlName="email"
+                       placeholder="Email">
+              </div>
+            </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="addPersonToGroup()" data-bs-dismiss="modal">Save New Person</button>
+        <button type="button" class="btn btn-primary" (click)="addPersonToGroup()" data-bs-dismiss="modal">Save New
+          Person
+        </button>
       </div>
     </div>
   </div>
